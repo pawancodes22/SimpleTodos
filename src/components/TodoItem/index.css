@@ -1,0 +1,18 @@
+/* Write your CSS here */
+
+.items {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  font-family: 'Roboto';
+}
+
+button {
+  color: red;
+  border-color: red;
+  border-style: solid;
+  border-radius: 5px;
+  background-color: transparent;
+  align-self: center;
+  padding: 5px;
+}
