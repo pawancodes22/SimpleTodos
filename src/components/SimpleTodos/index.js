@@ -56,6 +56,13 @@ class SimpleTodo extends Component {
       <div className="main-page">
         <div className="main-bg">
           <h1>Simple Todos</h1>
+          <div className="add-task-container">
+            <input
+              className="task-input-box"
+              placeholder="Enter the task name"
+            />
+            <button className="add-task-button">Add</button>
+          </div>
           <ul>
             {todoList.map(item => (
               <TodoItem key={item.id} object={item} func={this.onDelete} />

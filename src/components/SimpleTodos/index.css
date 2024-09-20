@@ -28,11 +28,31 @@ p {
 
 li {
   list-style-type: none;
-
   align-self: flex-start;
 }
 
 ul {
   padding: 0px;
   margin: 0px;
+}
+
+.add-task-container {
+  display: flex;
+  font-family: 'Roboto';
+  background-color: grey;
+  width: 200px;
+}
+
+.task-input-box {
+  padding: 5px;
+  outline: none;
+  border-style: none;
+  border-color: grey;
+}
+
+.add-task-button {
+  background-color: purple;
+  color: white;
+  padding: 10px 15px;
+  border-style: none;
 }
