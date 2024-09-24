@@ -5,9 +5,28 @@
   flex-direction: row;
   justify-content: space-between;
   font-family: 'Roboto';
+  border: 1px solid black;
+  padding: 0px 15px;
+  animation: fadeIn 1s ease;
+  transition: transform 0.2s ease;
+  margin: 5px 0px;
 }
 
-button {
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.items:hover {
+  transform: scale(1);
+  box-shadow: 0 0 20px #9ac5e2;
+}
+
+.delete-button {
   color: red;
   border-color: red;
   border-style: solid;
@@ -15,4 +34,53 @@ button {
   background-color: transparent;
   align-self: center;
   padding: 5px;
+}
+
+.edit-button {
+  background-color: #b2ccff;
+  border: 2px solid #a9c9ff;
+  color: #333333;
+  border-radius: 5px;
+  padding: 5px 10px;
+  box-shadow: 0 0 10px #d4e7ff;
+  cursor: pointer;
+}
+
+.edit-delete-container {
+  display: flex;
+  justify-content: space-between;
+  width: 150px;
+  align-items: center;
+}
+
+.title-checkbox-container {
+  display: flex;
+}
+
+.todo-checkbox {
+  margin-right: 15px;
+}
+
+.checked-item {
+  text-decoration: line-through;
+}
+
+.save-button {
+  background-color: #3498db; /* Default background color */
+  color: #ffffff;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 13px;
+  transition: background-color 0.3s ease; /* Smooth background color transition */
+}
+
+.save-button:hover {
+  background-color: #2980b9; /* New background color on hover */
+}
+
+.edit-mode-input {
+  padding: 10px 5px;
+  margin: 5px 0px;
 }

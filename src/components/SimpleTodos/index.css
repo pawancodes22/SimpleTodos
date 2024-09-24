@@ -21,6 +21,7 @@ h1 {
   color: #ff8542;
 }
 
+
 p {
   color: black;
   text-align: left;
@@ -40,7 +41,14 @@ ul {
   display: flex;
   font-family: 'Roboto';
   background-color: grey;
-  width: 200px;
+  border: 1px solid black;
+  width: fit-content;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.add-task-container:focus, .add-task-container:hover {
+  border-color: #3498db; /* Change border color on focus/hover */
+  box-shadow: 0 0 5px rgba(52, 152, 219, 0.5);
 }
 
 .task-input-box {
@@ -51,8 +59,20 @@ ul {
 }
 
 .add-task-button {
-  background-color: purple;
+  background-color: #3498db;
   color: white;
   padding: 10px 15px;
   border-style: none;
+  cursor: pointer;
+  transition: transform 0.2s ease, 
+  background-color 0.3s ease, 
+  box-shadow 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
+
+.add-task-button:hover {
+  background-color: #2980b9; /* Slightly darken the background color on hover */
+  transform: scale(1.05); /* Scale up the button on hover */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Enhance the shadow on hover */
+}
+
