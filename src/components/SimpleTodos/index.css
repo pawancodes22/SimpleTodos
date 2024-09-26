@@ -1,12 +1,13 @@
 /* Write your CSS here */
 
 .main-page {
-  height: 100vh;
+  min-height: 100vh;
   background-color: #ffc2a0;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding: 3% 0px;
 }
 
 .main-bg {
@@ -17,10 +18,10 @@
   padding: 20px;
 }
 
-h1 {
-  color: #ff8542;
+.todo-heading {
+  color: #ff416c;
+  font-family: 'Bree Serif';
 }
-
 
 p {
   color: black;
@@ -43,10 +44,13 @@ ul {
   background-color: grey;
   border: 1px solid black;
   width: fit-content;
-  transition: border-color 0.3s, box-shadow 0.3s;
+  transition:
+    border-color 0.3s,
+    box-shadow 0.3s;
 }
 
-.add-task-container:focus, .add-task-container:hover {
+.add-task-container:focus,
+.add-task-container:hover {
   border-color: #3498db; /* Change border color on focus/hover */
   box-shadow: 0 0 5px rgba(52, 152, 219, 0.5);
 }
@@ -64,9 +68,10 @@ ul {
   padding: 10px 15px;
   border-style: none;
   cursor: pointer;
-  transition: transform 0.2s ease, 
-  background-color 0.3s ease, 
-  box-shadow 0.3s ease;
+  transition:
+    transform 0.2s ease,
+    background-color 0.3s ease,
+    box-shadow 0.3s ease;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
@@ -76,3 +81,18 @@ ul {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Enhance the shadow on hover */
 }
 
+.search-bars-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.text-info {
+  color: #007bff;
+  font-style: italic;
+  font-weight: bold;
+  margin: 5px;
+}
+
+.multiple-todo-search-bar-container {
+}

@@ -1,5 +1,7 @@
 import {Component} from 'react'
 
+import {v4 as uuidv4} from 'uuid'
+
 import TodoItem from '../TodoItem'
 
 import './index.css'
@@ -50,7 +52,7 @@ const initialTodosList = [
 // Write your code here
 
 class SimpleTodo extends Component {
-  state = {todoList: initialTodosList, newTodoTitle: '', count: 9}
+  state = {todoList: initialTodosList, newTodoTitle: '', multipleTodoTitle: ''}
 
   saveEditedTodo = (id, newTitle) => {
     this.setState(prev => ({
@@ -84,38 +86,83 @@ class SimpleTodo extends Component {
     this.setState({newTodoTitle: event.target.value})
   }
 
+  changeMultipleTodoTitle = event => {
+    this.setState({multipleTodoTitle: event.target.value})
+  }
+
   addNewTodo = () => {
-    const {count, newTodoTitle} = this.state
+    const {newTodoTitle} = this.state
     this.setState(prev => ({
       todoList: [
         ...prev.todoList,
-        {id: count, title: newTodoTitle, isChecked: false},
+        {id: uuidv4(), title: newTodoTitle, isChecked: false},
       ],
-      count: prev.count + 1,
       newTodoTitle: '',
     }))
   }
 
+  returnMultipleTodo = () => {
+    const {multipleTodoTitle} = this.state
+    const arrayOfWords = multipleTodoTitle.split(' ')
+    const count = arrayOfWords[arrayOfWords.length - 1]
+    const heading = arrayOfWords.slice(0, arrayOfWords.length - 1).join(' ')
+    const arr = []
+    for (let i = 0; i < count; i += 1) {
+      arr.push({id: uuidv4(), title: heading, isChecked: false})
+    }
+    console.log(arr)
+    return arr
+  }
+
+  addMultipleTodo = () => {
+    this.setState(prev => ({
+      todoList: [...prev.todoList, ...this.returnMultipleTodo()],
+      multipleTodoTitle: '',
+    }))
+  }
+
   render() {
-    const {todoList, newTodoTitle} = this.state
+    const {todoList, newTodoTitle, multipleTodoTitle} = this.state
     return (
       <div className="main-page">
         <div className="main-bg">
-          <h1>Simple Todos</h1>
-          <div className="add-task-container">
-            <input
-              className="task-input-box"
-              placeholder="Enter the task name"
-              value={newTodoTitle}
-              onChange={this.changeNewTodoTitle}
-            />
-            <button
-              type="button"
-              className="add-task-button"
-              onClick={this.addNewTodo}
-            >
-              Add
-            </button>
+          <h1 className="todo-heading">Simple Todos</h1>
+          <div className="search-bars-container">
+            <div className="add-task-container">
+              <input
+                className="task-input-box"
+                placeholder="Enter the task name"
+                value={newTodoTitle}
+                onChange={this.changeNewTodoTitle}
+              />
+              <button
+                type="button"
+                className="add-task-button"
+                onClick={this.addNewTodo}
+              >
+                Add
+              </button>
+            </div>
+            <div className="multiple-todo-search-bar-container">
+              <div className="add-task-container">
+                <input
+                  className="task-input-box"
+                  placeholder="Enter task name and number"
+                  value={multipleTodoTitle}
+                  onChange={this.changeMultipleTodoTitle}
+                />
+                <button
+                  type="button"
+                  className="add-task-button"
+                  onClick={this.addMultipleTodo}
+                >
+                  Add
+                </button>
+              </div>
+              <p className="text-info">
+                *Add todo title and todo count seperated by space
+              </p>
+            </div>
           </div>
           <ul>
             {todoList.map(item => (
