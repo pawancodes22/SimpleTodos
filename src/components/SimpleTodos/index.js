@@ -52,7 +52,7 @@ const initialTodosList = [
 // Write your code here
 
 class SimpleTodo extends Component {
-  state = {todoList: initialTodosList, newTodoTitle: '', multipleTodoTitle: ''}
+  state = {todoList: initialTodosList, multipleTodoTitle: ''}
 
   saveEditedTodo = (id, newTitle) => {
     this.setState(prev => ({
@@ -82,36 +82,25 @@ class SimpleTodo extends Component {
     this.setState({todoList: newList})
   }
 
-  changeNewTodoTitle = event => {
-    this.setState({newTodoTitle: event.target.value})
-  }
-
   changeMultipleTodoTitle = event => {
     this.setState({multipleTodoTitle: event.target.value})
-  }
-
-  addNewTodo = () => {
-    const {newTodoTitle} = this.state
-    this.setState(prev => ({
-      todoList: [
-        ...prev.todoList,
-        {id: uuidv4(), title: newTodoTitle, isChecked: false},
-      ],
-      newTodoTitle: '',
-    }))
   }
 
   returnMultipleTodo = () => {
     const {multipleTodoTitle} = this.state
     const arrayOfWords = multipleTodoTitle.split(' ')
-    const count = arrayOfWords[arrayOfWords.length - 1]
-    const heading = arrayOfWords.slice(0, arrayOfWords.length - 1).join(' ')
-    const arr = []
-    for (let i = 0; i < count; i += 1) {
-      arr.push({id: uuidv4(), title: heading, isChecked: false})
+    const endDigit = parseInt(arrayOfWords[arrayOfWords.length - 1])
+    if (!Number.isNaN(endDigit)) {
+      const count = arrayOfWords[arrayOfWords.length - 1]
+      const heading = arrayOfWords.slice(0, arrayOfWords.length - 1).join(' ')
+      const arr = []
+      for (let i = 0; i < count; i += 1) {
+        arr.push({id: uuidv4(), title: heading, isChecked: false})
+      }
+      console.log(arr)
+      return arr
     }
-    console.log(arr)
-    return arr
+    return [{id: uuidv4(), title: multipleTodoTitle, isChecked: false}]
   }
 
   addMultipleTodo = () => {
@@ -122,7 +111,7 @@ class SimpleTodo extends Component {
   }
 
   render() {
-    const {todoList, newTodoTitle, multipleTodoTitle} = this.state
+    const {todoList, multipleTodoTitle} = this.state
     return (
       <div className="main-page">
         <div className="main-bg">
@@ -131,37 +120,17 @@ class SimpleTodo extends Component {
             <div className="add-task-container">
               <input
                 className="task-input-box"
-                placeholder="Enter the task name"
-                value={newTodoTitle}
-                onChange={this.changeNewTodoTitle}
+                placeholder="Enter task name and number"
+                value={multipleTodoTitle}
+                onChange={this.changeMultipleTodoTitle}
               />
               <button
                 type="button"
                 className="add-task-button"
-                onClick={this.addNewTodo}
+                onClick={this.addMultipleTodo}
               >
                 Add
               </button>
-            </div>
-            <div className="multiple-todo-search-bar-container">
-              <div className="add-task-container">
-                <input
-                  className="task-input-box"
-                  placeholder="Enter task name and number"
-                  value={multipleTodoTitle}
-                  onChange={this.changeMultipleTodoTitle}
-                />
-                <button
-                  type="button"
-                  className="add-task-button"
-                  onClick={this.addMultipleTodo}
-                >
-                  Add
-                </button>
-              </div>
-              <p className="text-info">
-                *Add todo title and todo count seperated by space
-              </p>
             </div>
           </div>
           <ul>

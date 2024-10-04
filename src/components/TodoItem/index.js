@@ -21,7 +21,9 @@ const TodoItem = props => {
     saveFunc(id, changingText)
     alterEditMode()
   }
+
   const todoTitleClassName = isChecked ? 'checked-item' : ''
+
   return (
     <li className="items">
       <div className="title-checkbox-container">
